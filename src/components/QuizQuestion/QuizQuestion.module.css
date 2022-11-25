@@ -24,4 +24,6 @@ td > div {
 }
 .answer {
   background: rgb(65, 225, 108);
+  font-size: 24px;
+  font-weight: bold;
 }
