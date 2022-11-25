@@ -18,8 +18,8 @@ export default function PlayersController({ onChangeForm }) {
 
   return (
     <div className={style.container}>
-      <div>Form</div>
-      <form onSubmit={addNewPlayer}>
+      <h2 className={style.title}>Запиши по черзі усіх гравців.</h2>
+      <form onSubmit={addNewPlayer} className={style.form}>
         <input
           type="text"
           placeholder="Введіть ім'я..."
@@ -29,7 +29,7 @@ export default function PlayersController({ onChangeForm }) {
         <button>Додати ігрока</button>
       </form>
 
-      <ul>
+      <ul className={style.list}>
         {players.map((player) => (
           <li key={player}>{player}</li>
         ))}

@@ -1,12 +1,12 @@
-// import { useState } from "react";
+import style from "./Score.module.css";
 
 function Score({ costOfQuestion, players, playersScore, increasePlayerScore }) {
   return (
-    <div>
+    <div className={style.container}>
       {costOfQuestion ? (
         <>
-          <h2>Хто ж відповів вірно?</h2>
-          <ul>
+          <h2 className={style.title}>Хто ж відповів вірно?</h2>
+          <ul className={style.list}>
             {players.map((player, index) => (
               <li
                 key={player}
@@ -20,7 +20,7 @@ function Score({ costOfQuestion, players, playersScore, increasePlayerScore }) {
       ) : (
         <>
           <h2>Кількість балів у гравців.</h2>
-          <ul>
+          <ul className={style.list}>
             {players.map((player, index) => (
               <li key={player}>
                 {player} : {playersScore[index]} балів
