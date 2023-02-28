@@ -1,0 +1,21 @@
+.container {
+  min-width: 500px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+
+  border: 1px solid #000;
+  border-radius: 15px;
+  overflow: hidden;
+
+  overflow-y: auto;
+}
+.decoration {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to left, white, black, white);
+  margin: 5px 0;
+  content: "";
+}

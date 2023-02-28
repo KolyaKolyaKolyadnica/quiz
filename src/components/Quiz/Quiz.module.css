@@ -1,6 +1,8 @@
 .category {
   width: 200px;
-  background: rgb(48, 200, 246);
+  /* background: rgb(48, 200, 246); */
+  background-color: rgb(0, 79, 128);
+  color: rgb(209, 209, 209);
   font-size: 36px;
   font-weight: bold;
 }

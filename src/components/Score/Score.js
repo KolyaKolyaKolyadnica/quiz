@@ -1,34 +1,24 @@
+import { useSelector } from "react-redux";
 import style from "./Score.module.css";
 
-function Score({ costOfQuestion, players, playersScore, increasePlayerScore }) {
+function Score() {
+  const players = useSelector((state) => state.playersList.players);
+  const score = useSelector((state) => state.playersList.score);
+
   return (
     <div className={style.container}>
-      {costOfQuestion ? (
-        <>
-          <h2 className={style.title}>Хто ж відповів вірно?</h2>
-          <ul className={style.list}>
-            {players.map((player, index) => (
-              <li
-                key={player}
-                onClick={() => increasePlayerScore(costOfQuestion, index)}
-              >
-                {player} : {playersScore[index]} балів +{costOfQuestion}
-              </li>
-            ))}
-          </ul>
-        </>
-      ) : (
-        <>
-          <h2>Кількість балів у гравців.</h2>
-          <ul className={style.list}>
-            {players.map((player, index) => (
-              <li key={player}>
-                {player} : {playersScore[index]} балів
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
+      <h2 className={style.title}>Кількість балів у гравців.</h2>
+
+      <div className={style.decoration}> </div>
+      <ul className={style.list}>
+        {players.map((player, index) => (
+          <li key={player} className={style.listItemOfRezult}>
+            <span>
+              {player} : {score[index]} балів
+            </span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

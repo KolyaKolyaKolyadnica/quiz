@@ -1,8 +1,10 @@
 import { useState } from "react";
+import Modal from "../Modal";
 import style from "./QuizQuestion.module.css";
 
 function QuizQuestion({ point, showScore }) {
   const [status, setStatus] = useState("cost");
+  const [showModal, setShowModal] = useState(true);
 
   const { cost, question, answer } = point;
 
@@ -15,21 +17,52 @@ function QuizQuestion({ point, showScore }) {
   }
   if (status === "question") {
     return (
-      <td onClick={() => setStatus("answer")}>
-        <div className={style.question}>{question}</div>
-      </td>
+      <>
+        <td>
+          <div className={style.question}>{question}</div>
+        </td>
+
+        <Modal onClose={() => alert("Тицьни на кнопку 'Дізнатись відповідь'")}>
+          <div className={style.container}>
+            <p className={style.textMain}>{question}</p>
+            <button className={style.btn} onClick={() => setStatus("answer")}>
+              Дізнатись відповідь
+            </button>
+          </div>
+        </Modal>
+      </>
     );
   }
+
   if (status === "answer") {
     return (
-      <td>
-        <div
-          className={style.answer}
-          onClick={() => showScore({ question, cost })}
-        >
-          {answer}
-        </div>
-      </td>
+      <>
+        <td>
+          <div className={style.answer}>
+            <span>Пройдено</span>
+          </div>
+        </td>
+
+        {showModal && (
+          <Modal onClose={() => alert("Тицьни на кнопку 'Зарахувати бали'")}>
+            <div className={style.container}>
+              <p className={style.textMain}>
+                <span className={style.textComment}>Відповідь:</span>
+                {answer}
+              </p>
+              <button
+                className={style.btn}
+                onClick={() => {
+                  showScore({ question, cost });
+                  setShowModal(false);
+                }}
+              >
+                Зарахувати бали.
+              </button>
+            </div>
+          </Modal>
+        )}
+      </>
     );
   }
 }

@@ -1,9 +1,16 @@
-import { Component } from "react";
+import { useState } from "react";
 import "./App.css";
 
 import december25 from "../data/december25.json";
+import default01 from "../data/default01.json";
 import GameList from "./GameList";
-import PlayingField from "./PlayingField";
+import PlayingField from "../pages/PlayingField";
+import Modal from "./Modal";
+import PlayersController from "./PlayersController";
+import { createBall } from "../js/BallAnimation/BallAnimation";
+import { useDispatch, useSelector } from "react-redux";
+
+import playersActions from "../redux/actions";
 
 const pages = {
   MENU: "menu",
@@ -11,50 +18,96 @@ const pages = {
   PLAY: "play",
 };
 
-class App extends Component {
-  state = {
-    games: [
-      december25,
-      {
-        name: "dasads",
-      },
-    ],
+function App() {
+  const [games, setGames] = useState([december25, default01]);
+  const [chosenGame, setChosenGame] = useState(null);
+  const [page, setPage] = useState(pages.MENU);
+  const [showModal, setShowModal] = useState(false);
 
-    chosenGame: null,
+  const [showGameList, setShowGameList] = useState(false);
+  const [showPlayersController, setShowPlayersController] = useState(false);
 
-    page: pages.MENU,
+  const players = useSelector((state) => state.playersList.players);
+
+  const dispatch = useDispatch();
+
+  const getGameByIndex = (e) => {
+    setChosenGame(games[e.target.dataset.gameIndex]);
+
+    setShowPlayersController(true);
+    setShowGameList(false);
   };
 
-  getGameByIndex = (e) => {
-    const chosenGame = this.state.games[e.target.dataset.gameIndex];
-
-    this.setState({ chosenGame, page: pages.PLAY });
+  const choseGame = () => {
+    setShowModal(!showModal);
+    setShowGameList(true);
   };
-  showMenuPage = () => {
-    this.setState({ page: pages.MENU });
+  const startGame = () => {
+    setPage(pages.PLAY);
+
+    setShowPlayersController(false);
+    setShowModal(!showModal);
+
+    dispatch(playersActions.createStartScore(players));
   };
 
-  render() {
-    const { games, chosenGame, page } = this.state;
+  const closeModal = () => {
+    setShowModal(!showModal);
 
-    if (page === "menu") {
-      return (
-        <>
-          <div>Обрати гру</div>
-          <div>Створити гру</div>
+    setShowPlayersController(false);
+    setShowGameList(false);
+  };
 
-          <GameList games={games} choseGame={this.getGameByIndex} />
-        </>
-      );
-    }
+  const arr = [1, 2, 3, 4, 5];
 
-    if (page === "play") {
-      return (
-        <>
-          <PlayingField games={chosenGame} backToMenu={this.showMenuPage} />
-        </>
-      );
-    }
+  if (page === pages.MENU) {
+    return (
+      <>
+        {!showModal && (
+          <>
+            <div className="startMenuContainer">
+              <button className="menuBtn" onClick={() => choseGame()}>
+                Обрати гру
+              </button>
+              <button className="menuBtn" onClick={() => choseGame()} disabled>
+                Створити гру (coming...)
+              </button>
+            </div>
+
+            <div className="ballContainer">
+              {arr.map((_, idx) => createBall(idx, "up"))}
+              {arr.map((_, idx) => createBall(idx, "right"))}
+              {arr.map((_, idx) => createBall(idx, "down"))}
+              {arr.map((_, idx) => createBall(idx, "left"))}
+            </div>
+          </>
+        )}
+
+        {showModal && (
+          <Modal onClose={closeModal}>
+            {showGameList && (
+              <GameList games={games} choseGame={getGameByIndex} />
+            )}
+
+            {showPlayersController && (
+              <PlayersController onClickStartGame={() => startGame()} />
+            )}
+          </Modal>
+        )}
+      </>
+    );
+  }
+
+  if (page === pages.PLAY) {
+    return (
+      <>
+        <PlayingField
+          games={chosenGame}
+          backToMenu={() => setPage(pages.MENU)}
+          players={players}
+        />
+      </>
+    );
   }
 }
 

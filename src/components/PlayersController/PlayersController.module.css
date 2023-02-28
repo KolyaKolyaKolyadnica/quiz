@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(blue, yellow);
+  background: #fff;
 
   border: 1px solid #000;
   border-radius: 15px;
@@ -19,14 +19,84 @@
   padding: 10px 0;
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+}
+.form > input {
+  border: 1px solid #000;
+  border-radius: 2px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  height: 30px;
+  width: 30px;
+
+  background-color: rgba(255, 255, 255, 0);
+  background-color: none;
+  border: none;
+}
+.green {
+  color: green;
+}
+.red {
+  color: red;
+}
+
+.react-icons {
+  vertical-align: middle;
+  background-color: green;
+}
+
+.decoration {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to left, white, black, white);
+  margin: 5px 0;
+  content: "";
+}
+
+.listContainer {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  flex-grow: 1;
+  overflow: hidden;
+  overflow-y: auto;
 }
 .list {
-  list-style: none;
+  width: 80%;
+  padding: 0 0 0 50px;
+  list-style-type: decimal-leading-zero;
+
   font-size: 30px;
-  font-family: "Nerko One";
-  color: rgb(227, 225, 225);
-  text-shadow: 1px 0 5px #000000, 0 1px 5px #000, -1px 0 5px #000,
-    0 -1px 5px #000;
-  padding: 10px 0 0 0;
+
+  color: rgb(0, 0, 0);
+}
+.listItem:hover {
+  background-color: rgb(243, 243, 243);
+  transform: scale(1.1);
+  transition: linear 0.2s all 0s;
+}
+
+.listItemContentContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nextBtn {
+  cursor: pointer;
+  padding: 20px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: green;
+  font-size: 24px;
+  box-shadow: 0px 5px #000;
+}
+.nextBtn:hover {
+  transform: translate(0px, 5px);
+  box-shadow: 0px 0px #000;
 }
