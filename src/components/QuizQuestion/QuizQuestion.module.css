@@ -13,30 +13,29 @@ td > div {
   align-items: center;
 }
 .cost {
-  background: rgb(79, 42, 140);
+  background: rgb(58, 127, 188);
   font-size: 36px;
   font-weight: bold;
   color: rgb(209, 209, 209);
 
-  outline: 1px solid #000;
+  box-shadow: 5px 5px 5px rgb(99, 99, 99);
 }
 .cost:hover {
   transition: 0.2s all 0s linear;
   font-size: 40px;
-  box-shadow: inset 5px 5px 5px rgb(99, 52, 173),
-    inset -5px -5px 5px rgb(99, 52, 173);
+
+  transform: scale(1.05);
+  box-shadow: 5px 5px 10px rgb(99, 99, 99);
 }
 .question {
-  background: rgb(167, 178, 69);
+  /* background: rgb(167, 178, 69); */
   font-weight: bold;
 }
 .answer {
-  background: green;
+  /* background: green; */
   font-size: 18px;
   font-weight: bold;
-
-  /* box-shadow: inset -1px -1px 10px rgba(1, 83, 1, 0.9),
-      inset 1px 1px 50px rgba(1, 83, 1, 0.9); */
+  outline: 1px solid #000;
 }
 .answer > span {
   transform: rotate(-10deg);
@@ -54,6 +53,7 @@ td > div {
   overflow: hidden;
 
   overflow-y: auto;
+  padding-bottom: 40px;
 }
 .textMain {
   display: block;

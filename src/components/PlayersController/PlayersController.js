@@ -69,7 +69,7 @@ export default function PlayersController({ onClickStartGame }) {
 
       <div className="decoration"> </div>
 
-      <button onClick={onClickStartGame} className={style.nextBtn}>
+      <button onClick={onClickStartGame} className="greenBtn">
         Поїхали!
       </button>
     </div>

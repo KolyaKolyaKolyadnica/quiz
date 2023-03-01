@@ -1,13 +1,13 @@
 import { useState } from "react";
 import "./App.css";
 
-import december25 from "../data/december25.json";
+import series from "../data/series.json";
 import default01 from "../data/default01.json";
 import GameList from "./GameList";
 import PlayingField from "../pages/PlayingField";
 import Modal from "./Modal";
 import PlayersController from "./PlayersController";
-import { createBall } from "../js/BallAnimation/BallAnimation";
+import FlyingBalls from "./FlyingBalls/FlyingBalls";
 import { useDispatch, useSelector } from "react-redux";
 
 import playersActions from "../redux/actions";
@@ -19,7 +19,7 @@ const pages = {
 };
 
 function App() {
-  const [games, setGames] = useState([december25, default01]);
+  const [games, setGames] = useState([default01, series]);
   const [chosenGame, setChosenGame] = useState(null);
   const [page, setPage] = useState(pages.MENU);
   const [showModal, setShowModal] = useState(false);
@@ -43,6 +43,10 @@ function App() {
     setShowGameList(true);
   };
   const startGame = () => {
+    if (players.length === 0) {
+      alert("Ну хочаб одного гравця введи :(");
+      return;
+    }
     setPage(pages.PLAY);
 
     setShowPlayersController(false);
@@ -69,17 +73,12 @@ function App() {
               <button className="menuBtn" onClick={() => choseGame()}>
                 Обрати гру
               </button>
-              <button className="menuBtn" onClick={() => choseGame()} disabled>
+              {/* <button className=" menuBtn" onClick={() => choseGame()} disabled>
                 Створити гру (coming...)
-              </button>
+              </button> */}
             </div>
 
-            <div className="ballContainer">
-              {arr.map((_, idx) => createBall(idx, "up"))}
-              {arr.map((_, idx) => createBall(idx, "right"))}
-              {arr.map((_, idx) => createBall(idx, "down"))}
-              {arr.map((_, idx) => createBall(idx, "left"))}
-            </div>
+            <FlyingBalls />
           </>
         )}
 
@@ -102,7 +101,7 @@ function App() {
     return (
       <>
         <PlayingField
-          games={chosenGame}
+          game={chosenGame}
           backToMenu={() => setPage(pages.MENU)}
           players={players}
         />

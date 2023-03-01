@@ -18,14 +18,12 @@ function QuizQuestion({ point, showScore }) {
   if (status === "question") {
     return (
       <>
-        <td>
-          <div className={style.question}>{question}</div>
-        </td>
+        <td></td>
 
         <Modal onClose={() => alert("Тицьни на кнопку 'Дізнатись відповідь'")}>
           <div className={style.container}>
             <p className={style.textMain}>{question}</p>
-            <button className={style.btn} onClick={() => setStatus("answer")}>
+            <button className="greenBtn" onClick={() => setStatus("answer")}>
               Дізнатись відповідь
             </button>
           </div>
@@ -37,11 +35,7 @@ function QuizQuestion({ point, showScore }) {
   if (status === "answer") {
     return (
       <>
-        <td>
-          <div className={style.answer}>
-            <span>Пройдено</span>
-          </div>
-        </td>
+        <td></td>
 
         {showModal && (
           <Modal onClose={() => alert("Тицьни на кнопку 'Зарахувати бали'")}>
@@ -51,7 +45,7 @@ function QuizQuestion({ point, showScore }) {
                 {answer}
               </p>
               <button
-                className={style.btn}
+                className="greenBtn"
                 onClick={() => {
                   showScore({ question, cost });
                   setShowModal(false);

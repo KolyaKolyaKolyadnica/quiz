@@ -6,7 +6,7 @@ function GameList({ games, choseGame }) {
     <div className={style.container}>
       <h2>Обери гру:</h2>
       <div className={style.decoration}> </div>
-      <ul>
+      <ul className={style.list}>
         {games.map((game, index) => (
           <GameListItem
             game={game}

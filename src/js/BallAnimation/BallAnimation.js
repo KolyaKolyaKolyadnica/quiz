@@ -1,3 +1,5 @@
+import style from "../../components/FlyingBalls/FlyingBalls.module.css";
+
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -9,7 +11,7 @@ export const createBall = (idx, direction) => {
     return (
       <div
         key={idx}
-        className="ball"
+        className={style.ball}
         style={{
           top: `${0}%`,
           left: `${getRandomIntInclusive(-10, 110)}%`,
@@ -22,7 +24,7 @@ export const createBall = (idx, direction) => {
     return (
       <div
         key={idx}
-        className="ball"
+        className={style.ball}
         style={{
           top: `${getRandomIntInclusive(-10, 110)}%`,
           left: `${110}%`,
@@ -35,7 +37,7 @@ export const createBall = (idx, direction) => {
     return (
       <div
         key={idx}
-        className="ball"
+        className={style.ball}
         style={{
           top: `${110}%`,
           left: `${getRandomIntInclusive(-10, 110)}%`,
@@ -48,7 +50,7 @@ export const createBall = (idx, direction) => {
     return (
       <div
         key={idx}
-        className="ball"
+        className={style.ball}
         style={{
           top: `${getRandomIntInclusive(-10, 110)}%`,
           left: `${0}%`,

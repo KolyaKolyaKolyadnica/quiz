@@ -5,8 +5,8 @@ import Navigation from "../../components/Navigation/Navigation";
 import ScoreEdit from "../../components/ScoreEdit";
 import style from "./PlayingField.module.css";
 
-function PlayingField({ games, backToMenu }) {
-  const { name, categories } = games;
+function PlayingField({ game, backToMenu }) {
+  const { name, categories } = game;
   const [playersControllerModal, setPlayersControllerModal] = useState(false);
   const [doneQuestions, setDoneQuestions] = useState([]);
   const [playersScoreModal, setPlayersScoreModal] = useState(false);
@@ -34,13 +34,17 @@ function PlayingField({ games, backToMenu }) {
         }
       />
 
-      <Quiz categories={categories} showScore={showScore} />
+      <Quiz
+        categories={categories}
+        showScore={showScore}
+        doneQuestions={doneQuestions}
+      />
 
       {playersScoreModal && (
         <Modal onClose={() => alert("Вкажи хто правильно відповів")}>
           <ScoreEdit
             costOfQuestion={costOfQuestion}
-            winnerWasChosen={() => setPlayersScoreModal(!playersScoreModal)}
+            closeModal={() => setPlayersScoreModal(!playersScoreModal)}
           />
         </Modal>
       )}

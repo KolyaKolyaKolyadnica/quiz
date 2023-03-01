@@ -87,16 +87,3 @@
   align-items: center;
   justify-content: space-between;
 }
-.nextBtn {
-  cursor: pointer;
-  padding: 20px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  background-color: green;
-  font-size: 24px;
-  box-shadow: 0px 5px #000;
-}
-.nextBtn:hover {
-  transform: translate(0px, 5px);
-  box-shadow: 0px 0px #000;
-}

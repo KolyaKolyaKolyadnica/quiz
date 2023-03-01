@@ -6,17 +6,6 @@
   width: 60%;
 }
 
-table,
-th,
-td {
-  outline: 2px solid #000;
-}
-
-th {
-  width: 80px;
-  background: rgb(48, 200, 246);
-}
-
 .btn {
   cursor: pointer;
   padding: 10px;

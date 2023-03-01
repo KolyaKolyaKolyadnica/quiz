@@ -22,6 +22,15 @@
   margin: 15px 0;
   content: "";
 }
+
+.listContainer {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  flex-grow: 1;
+  overflow: hidden;
+  overflow-y: auto;
+}
 .list {
   width: 100%;
   list-style-type: decimal-leading-zero;
@@ -39,16 +48,10 @@
   padding: 5px 50px;
   color: #fff;
 }
-span {
+.listItem > span {
   color: rgb(0, 0, 0);
 }
 .listItem:hover {
   background: rgb(0, 160, 0);
   color: rgb(0, 0, 0) !important;
-}
-
-.listItemOfRezult {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px 50px;
 }
